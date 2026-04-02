@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ergo Chain Pulse — Live Network Monitor</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="stars"></div>
+
+  <header>
+    <div class="logo-row">
+      <span class="logo-icon">💓</span>
+      <h1>ERGO CHAIN PULSE</h1>
+      <span class="status-dot" id="statusDot"></span>
+    </div>
+    <p class="tagline">Live heartbeat of the Ergo blockchain</p>
+  </header>
+
+  <main>
+    <!-- EKG Canvas -->
+    <section class="ekg-section">
+      <div class="ekg-label">BLOCK TIME EKG <span id="ekgSub">— polling...</span></div>
+      <canvas id="ekgCanvas"></canvas>
+      <div class="ekg-footer">
+        <span>Each spike = new block &nbsp;|&nbsp; Height = block time (secs)</span>
+        <span id="lastBlock">—</span>
+      </div>
+    </section>
+
+    <!-- Stat grid -->
+    <section class="stats-grid">
+      <div class="stat-card" id="cardHeight">
+        <div class="stat-icon">⛓️</div>
+        <div class="stat-value" id="blockHeight">—</div>
+        <div class="stat-label">Block Height</div>
+      </div>
+      <div class="stat-card" id="cardInterval">
+        <div class="stat-icon">⏱️</div>
+        <div class="stat-value" id="blockInterval">—</div>
+        <div class="stat-label">Avg Block Time</div>
+      </div>
+      <div class="stat-card" id="cardHashrate">
+        <div class="stat-icon">⚡</div>
+        <div class="stat-value" id="hashrate">—</div>
+        <div class="stat-label">Est. Hashrate</div>
+      </div>
+      <div class="stat-card" id="cardTxs">
+        <div class="stat-icon">📦</div>
+        <div class="stat-value" id="txCount">—</div>
+        <div class="stat-label">Txs Last Block</div>
+      </div>
+      <div class="stat-card" id="cardPrice">
+        <div class="stat-icon">💰</div>
+        <div class="stat-value" id="ergPrice">—</div>
+        <div class="stat-label">ERG / USD</div>
+      </div>
+      <div class="stat-card" id="cardDiff">
+        <div class="stat-icon">🎯</div>
+        <div class="stat-value" id="difficulty">—</div>
+        <div class="stat-label">Difficulty</div>
+      </div>
+    </section>
+
+    <!-- Health score -->
+    <section class="health-section">
+      <div class="health-header">NETWORK HEALTH</div>
+      <div class="health-bar-wrap">
+        <div class="health-bar-bg">
+          <div class="health-bar-fill" id="healthFill"></div>
+        </div>
+        <div class="health-score" id="healthScore">—</div>
+      </div>
+      <div class="health-label" id="healthLabel">Gathering data...</div>
+      <div class="health-breakdown" id="healthBreakdown"></div>
+    </section>
+
+    <!-- Recent blocks -->
+    <section class="blocks-section">
+      <div class="blocks-header">RECENT BLOCKS</div>
+      <div class="blocks-table-wrap">
+        <table id="blocksTable">
+          <thead>
+            <tr>
+              <th>Height</th>
+              <th>Time (ago)</th>
+              <th>Block Time</th>
+              <th>Txs</th>
+              <th>Size</th>
+              <th>Miner</th>
+            </tr>
+          </thead>
+          <tbody id="blocksBody">
+            <tr><td colspan="6" class="loading-row">Loading blocks…</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <div class="refresh-row">
+      <span id="nextRefresh">Auto-refresh in 30s</span>
+      <button id="refreshBtn">↻ Refresh Now</button>
+    </div>
+  </main>
+
+  <footer>
+    <p>Data: <a href="https://api.ergoplatform.com" target="_blank">Ergo Explorer API</a> &nbsp;|&nbsp; <a href="https://coingecko.com" target="_blank">CoinGecko</a></p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
